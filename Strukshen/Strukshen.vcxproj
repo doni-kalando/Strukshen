@@ -143,7 +143,7 @@
     <ClCompile Include="Source.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Func.h" />
+    <ClInclude Include="Source.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
