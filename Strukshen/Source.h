@@ -1,7 +1,4 @@
 #pragma once
-void hello() {
-	printf("Hello, MVStudio!\n");
-}
 
 struct Car	// Структура Car со своими типами данных, как шаблон.
 {
@@ -52,3 +49,4 @@ void Calculator() {
 	printf("Результат: %f\n", operac(a, b, z));
 
 }; */
+

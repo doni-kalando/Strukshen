@@ -4,7 +4,7 @@
 
 int main() {
 
-	hello();
+	int rc = puts("Hello, MVStudio!");
 
 	struct Car bmw;	//Создали объект, на основе шаблона Car. Имеет доступ ко всем его параменным.
 
