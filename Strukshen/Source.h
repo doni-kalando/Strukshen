@@ -3,7 +3,14 @@ void hello() {
 	printf("Hello, MVStudio!\n");
 }
 
-float operac(float num_first, float num_second, char znak) {
+struct Car	// Структура Car со своими типами данных, как шаблон.
+{
+	int speed;
+	char name[50];
+	float weight;
+};
+
+/*float operac(float num_first, float num_second, char znak) {
 	float res = 0;
 
 	switch (znak)
@@ -28,13 +35,6 @@ float operac(float num_first, float num_second, char znak) {
 	return res;
 };
 
-struct Car	// Структура Car со своими типами данных, как шаблон.
-{
-	int speed;
-	char name[50];
-	float weight;
-};
-
 void Calculator() {
 	float a = 0, b = 0;
 	char z = '0';
@@ -51,4 +51,4 @@ void Calculator() {
 
 	printf("Результат: %f\n", operac(a, b, z));
 
-};
+}; */
