@@ -7,6 +7,16 @@ struct Car	// —труктура Car со своими типами данных, как шаблон.
 	float weight;
 };
 
+struct Abstract
+{
+	float width, height;
+};
+
+void calc(struct Abstract *obj) {
+	float res = obj->height * obj->width;
+	printf("Result: %.2f\n", res);
+};
+
 /*float operac(float num_first, float num_second, char znak) {
 	float res = 0;
 

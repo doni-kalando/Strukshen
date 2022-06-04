@@ -1,8 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <locale.h>
 #include "Source.h"
 
 int main() {
+	setlocale(LC_ALL, "Russian");
 
 	int rs = puts("Hello, MVStudio!");
 	if (rs == EOF)
@@ -16,8 +18,12 @@ int main() {
 
 	struct Car audi = { 300, "Audu A8", 2723.00f };
 
-	printf("%s his speed: %d and weight %f\n", audi.name, audi.speed, audi.weight);
-	printf("%s his speed: %d and weight %f\n", bmw.name, bmw.speed, bmw.weight);
+	struct Abstract square = {5, 7};
+
+	calc(&square);
+
+	printf("»ма машины: %s, еЄ скорость: %d, еЄ вес: %f\n", audi.name, audi.speed, audi.weight);
+	printf("»ма машины: %s, еЄ скорость: %d, еЄ вес: %f\n\n", bmw.name, bmw.speed, bmw.weight);
 
 	/* Calculator(); */ 
 	
