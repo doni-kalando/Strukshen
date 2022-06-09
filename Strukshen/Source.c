@@ -24,9 +24,9 @@ int main() {
 	{
 		setcur(0,0);
 
-		if (run) avtoMoveBall();								// Если run = TRUE, то шарик в движении
-		else  moveBall(racket.x + racket.w / 2, racket.y - 1);	// Иначе шарик возвращается к Ракетке
-		if (ball.iy > height) {									// Если шарик ушел за ракетку (покинул поле), то вовзращается к ракетке
+		if (run) avtoMoveBall();								// Если run = TRUE, то Шарик в движении
+		else  moveBall(racket.x + racket.w / 2, racket.y - 1);	// Иначе Шарик возвращается к Ракетке
+		if (ball.iy > height) {									// Если Шарик ушел за Ракетку (покинул поле), то вовзращается к Ракетке
 			run = FALSE;
 			if (hitCnt > maxHitCnt) maxHitCnt = hitCnt;				// Максимальное колличество отражаенных Шариков от Ракетки
 			hitCnt = 0;												// Обнуляем счетчик
@@ -37,8 +37,8 @@ int main() {
 		putBall();		// Вставляем Шарик 
 		show();			// Отабражение поля
 
-		if (GetKeyState('A') < 0) moveRacket(racket.x - 3);		// Двигать ракету в лево, если достигла стены не двигать дальше
-		if (GetKeyState('D') < 0) moveRacket(racket.x + 3);		// Двигать ракету в право, если достигла стены не двигать дальше
+		if (GetKeyState('A') < 0) moveRacket(racket.x - 3);		// Двигать Ракету в лево, если достигла стены не двигать дальше
+		if (GetKeyState('D') < 0) moveRacket(racket.x + 3);		// Двигать Ракету в право, если достигла стены не двигать дальше
 		if (GetKeyState('W') < 0) run = TRUE;					// Перевод Флажок в TRUE 
 
 		printf("\nХ: %f:", resus = ball.x + cos(ball.alfa) * ball.speed);	// Отображение координаты Шарика по Х
