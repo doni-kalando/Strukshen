@@ -2,15 +2,18 @@
 
 #define width 65
 #define height 25
+#define wall '#'
 
 char mas[height][width + 1];		// Массив исспользуемый в виде игрового поля
 int hitCnt = 0, maxHitCnt = 0;		// Счетик отражаемых Шариков и счетчик максимального колличества отраженных Шариков
 
 typedef struct {
+	char shape;
 	int x, y, w;	// Координаты Ракетки X, У и длинна W
 } TRacket;			// Тип Ракета
 
 typedef struct {
+	char shape;
 	float x, y;		// Координаты Шарика типа float
 	int ix, iy;		// Координаты Шарика типа int
 	float alfa;		// 
@@ -22,12 +25,14 @@ TBall ball;		// Шарик типа Шарика
 TBall ballSave;	// Копия Шарика со старыми значениями
 
 void initRacket() {	// Инициализатор Ракеты
+	racket.shape = '@';
 	racket.w = 7;
 	racket.x = (width - racket.w) / 2;
 	racket.y = height - 1;
 }
 
 void initBall() {	// Инициалтзатор Шарика
+	ball.shape = '*';
 	ball.x = 2;
 	ball.y = 2;
 	ball.alfa = -1;
@@ -35,21 +40,22 @@ void initBall() {	// Инициалтзатор Шарика
 }
 
 void putRacket() {	// Всталение Ракеты на поле
-	for (int i = racket.x; i < racket.x + racket.w; i++) mas[racket.y][i] = '@';
+	for (int i = racket.x; i < racket.x + racket.w; i++) mas[racket.y][i] = racket.shape;
 }
 
 void putBall() {	// Вставление Шарика на поле
-	mas[ball.iy][ball.ix] = '*';
+	mas[ball.iy][ball.ix] = ball.shape;
 }
 
 void init() {		// Инициализация поля
-	for (int i = 0; i < width; i++) mas[0][i] = '#';
+	for (int i = 0; i < width; i++) mas[0][i] = wall;
 	
 	mas[0][width] = '\0';
 	strncpy(mas[1], mas[0], width + 1);
 
 	for (int i = 1; i < width - 1; i++) mas[1][i] = ' ';
 	for (int i = 2; i < height; i++) strncpy(mas[i], mas[1], width + 1);
+	// for (int j = 10; j < 50; j++) mas[10][j] = wall;
 }
 
 void show() {		// Отображения поля
@@ -83,14 +89,14 @@ void avtoMoveBall() {	// Автоматическое движение Шарика
 
 	moveBall(ball.x + cos(ball.alfa) * ball.speed, ball.y + sin(ball.alfa) * ball.speed);	// Смена координат Шарика
 
-	if ((mas[ball.iy][ball.ix] == '#') || (mas[ball.iy][ball.ix] == '@')) {	// Если Шарик сталкнулся со стеной поля или Ракетой
-		if (mas[ball.iy][ball.ix] == '@') hitCnt++;								// + к колличеству ударов Шарика об Ракетку
+	if ((mas[ball.iy][ball.ix] == wall) || (mas[ball.iy][ball.ix] == racket.shape)) {	// Если Шарик сталкнулся со стеной поля или Ракетой
+		if (mas[ball.iy][ball.ix] == racket.shape) hitCnt++;								// + к колличеству ударов Шарика об Ракетку
 		if ((ball.ix != ballSave.ix) && (ball.iy != ballSave.iy)) {				// Сравниваем старое положение Шарика с новым
 			if (mas[ballSave.iy][ball.ix] == mas[ball.iy][ballSave.ix])			// Если Шарик в углу, то меняем направление в противоположную сторону
-				ballSave.alfa = ballSave.alfa + M_PI;
+				ballSave.alfa += M_PI;
 			else																// ИНаче ...
 			{
-				if (mas[ballSave.iy][ball.ix] == '#')								// Если поверхность вертикальная, то ...  
+				if (mas[ballSave.iy][ball.ix] == wall)								// Если поверхность вертикальная, то ...  
 					ballSave.alfa = (2 * M_PI - ballSave.alfa) + M_PI;				// Отражение по вертикали
 				else																// Иначе ...
 					ballSave.alfa = (2 * M_PI - ballSave.alfa);						// Отражение по гаризонтали
